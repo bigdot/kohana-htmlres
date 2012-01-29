@@ -3,17 +3,26 @@
 A generalistic module for styles and scripts (or whatever) with dependency tracking and conflicts
 resolving and a collector feature.
 
-This class is the object front-end of this module.
+The module works by creating a collector where you add your scripts, and then, printing it (echoing).
+Collectors have a name, and you can look at them as groups of nodes. The items added are called nodes.
+This module has been created for styles and scripts but internally there is no diference between these two.
+The difference is made by the rendering callback that is used.
+
+The front-end class (helper) is HTMLRes.
+The object front-end class is HTMLNodeCollector.
+
+##HTMLNodeCollector
+
 Objects of this class have the role of aiding in adding an element to the registry easily.
-[Note: To learn about the registry see HTMLRes_HTMLNodeReg ]
 
 The objects are ment to be created by the static front-end HTMLRes.
 
 Getting or creating a collector:
-<code>
-HTMLRes::collector('my_colector');
-</code>
+		
+		HTMLRes::collector('my_colector');
+
 this will create and return a new collector invoking the factory,
+
 or return the existing one if it already exists.
 
 You can pass options to the registry of the collector as a second parameter.
