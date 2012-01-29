@@ -1,4 +1,4 @@
-#HTMLRes module
+# HTMLRes module
 
 A generalistic module for styles and scripts (or whatever) with dependency tracking and conflicts
 resolving and a collector feature.
@@ -11,16 +11,18 @@ The difference is made by the rendering callback that is used.
 The front-end class (helper) is HTMLRes.
 The object front-end class is HTMLNodeCollector.
 
-##HTMLNodeCollector
+## HTMLNodeCollector
 
 Objects of this class have the role of aiding in adding an element to the registry easily.
 
 The objects are ment to be created by the static front-end HTMLRes.
 
 Getting or creating a collector:
-		
-		<?php $collector = HTMLRes::collector('my_colector'); ?>
-		
+
+```php		
+$collector = HTMLRes::collector('my_colector');
+``
+
 this will create and return a new collector invoking the factory, or return the existing one if it already exists.
 
 You can pass options to the registry of the collector as a second parameter.
