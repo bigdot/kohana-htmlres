@@ -1,5 +1,8 @@
 # HTMLRes module
 
+
+### Usage notes
+
 A generalistic module for styles and scripts (or whatever) with dependency tracking and conflicts
 resolving and a collector feature.
 
@@ -11,7 +14,7 @@ The difference is made by the rendering callback that is used.
 The front-end class (helper) is HTMLRes.
 The object front-end class is HTMLNodeCollector.
 
-### HTMLNodeCollector
+##### HTMLNodeCollector
 
 Objects of this class have the role of aiding in adding an element to the registry easily.
 
@@ -129,10 +132,82 @@ protected function _add_main_scripts_to( $coll ) // scripts collector, see above
 <!---` -->
 
 Rendereing the collector return the result of the registry's `` __toString() `` (and that is `` $registry->render() ``)
-In your view can do `` <?php echo $scripts; ?> ``.
+In your view can do `` <?php echo $scripts_collector; ?> ``.
 
 The class has some utility functions named in a way that it is very unlikely to
 conflict with one of your node names, and that is with 3 underscores appended  ``___ ``.
-These will be called "supermagic" methods or functions from now on in this doc.
+These will be called "supermagic" methods or functions from now on these docs.
 
+
+##### HTMLNodeReg (HTMLNodeRegistry)
+
+The nodes registry.
+
+Altough it was originally cencieved as a tree structure, the 21st time i've rewritten it from
+scratch, i came to the conclusion the a tree structure was too much for this job, and so,
+the 22nd time was rewritten as a list structure.
+There are 2 containers, one holds an associative array of nodes indexed by their names, and one
+holds the order in which the nodes should be rendered. It solves conflicts on registration so that
+a node in the registry with a higher priority ( false means lack of priority, and it's considered
+higher than the node's to be added if the latter is missing the priority also) or that is depended
+on by a node with a higher priority, wins. Dependency solving is similar, and dependencies that
+are missing are created from the names given by the inserter node ( so be wise about this; if you
+have deps that have a specific src other than the one created from prefix + name + extension,
+you'll have to add those first).
+
+As of the time of this writing the module is highly untested (but it seems to work for me).
+
+The registries are not ment to be used dirrectly, they are used internally by the collectors.
+
+Adding nodes to the registry is done by the import function
+This takes as a parameter an associative or mixed key or normal array that holds the info to be
+passed to the node factory method. String named keys take precedence over int keys , and int keys
+are parsed in the order that the parameters are expected to be given to the factory of the node,
+and that is : name, src, attributes, priority, conflicts, dependencies, prefix, extension.
+
+To get the list what should be displayed, the first thing to do is to get the nodes in order,
+and that is done by `` ordered_list() `` function. Nodes are rendered using a `` render_node_callback ``,
+that must be provided by the collector, the default just prints a html comment of the `` name `` and `` src ``
+of the nodes. There are 2 conveniance functions in HTMLRes for styles and scripts. If ypu find another
+usage for this module, i'll be happy to hear form you.
+
+The rendering is done in the `` render() `` member method, which calls a `` render_registry_callback ``, which
+in turn renders each node from the ordered list with the `` render_node_callback ``.
+
+-------------------
+
+As of the time of this writing, this doc is highly unfinished.
+The text was extracted from the comments in the __class__ files.
+
+
+
+### Who uses it
+
+me
+
+
+
+### Who needs it
+
+me
+
+
+
+### Why ?
+
+didn't found one
+
+
+
+### Licence
+
+LGPL 3
+
+
+
+### End notes
+
+If you use it, i'll be happy to hear from you.
+If you think it's awful, don't use it.
+If you think it's awful, but you need it, fork it (don't knife it :)) ), maki it better, and let me know.
 
