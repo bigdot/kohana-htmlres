@@ -19,10 +19,9 @@ The objects are ment to be created by the static front-end HTMLRes.
 
 Getting or creating a collector:
 
-	```php
+```php
 	$collector = HTMLRes::collector('my_colector');
-	```
-	
+```
 <!---
 `
 -->
