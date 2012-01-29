@@ -19,10 +19,13 @@ The objects are ment to be created by the static front-end HTMLRes.
 
 Getting or creating a collector:
 
-```php
-$collector = HTMLRes::collector('my_colector');
-
-```
+	```php
+	$collector = HTMLRes::collector('my_colector');
+	```
+	
+<!---
+`
+-->
 
 this will create and return a new collector invoking the factory, or return the existing one if it already exists.
 
