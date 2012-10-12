@@ -86,36 +86,37 @@ protected function _add_main_scripts_to( $coll ) // scripts collector, see above
 	
 	// If no illegal characters you can pass the name as symbol (not expression as above)
 	
-	->main_functions() // will add node with name "main_functions" and default parameters
-	->forms(); // same as above
+	->my_script_1() // will add node with name "main_functions" and default parameters
+	->my_script_2(); // same as above
 
 
 	// You can set scripts as properties, where the value assigned, if it's not an array,
 	// it will be passed as <code> array( $value ) </code> as the first argument to the collector
 	// function, otherwise, if it's an array, it is passed as is;
 
-	$coll->ajax = true;
-		// same as $coll->ajax(true); // true is actually there by default, so it's unneeded
-		// same as $coll->{'ajax'}();
-		// same as $coll->___collect('ajax');
-		// same as $coll->___collect_assoc(array('name'=>'ajax'));
-		// same as $coll('ajax');
-		// same as $coll->ajax = array('ajax');
-		// same as $coll->ajax = array('name' => 'ajax');
-			// this above is overrinding the name , you can actually do $coll->add = array('name'=>'ajax');
-		// same as $coll['ajax'] = true;
-		// same as $coll->{'ajax'} = true;
+	$coll->mys_script_3 = true;
+		// same as $coll->my_script_3(true); // true is actually there by default, so it's unneeded
+		// same as $coll->{'my_script_3'}();
+		// same as $coll->___collect('my_script_3');
+		// same as $coll->___collect_assoc(array('name'=>'my_script_3'));
+		// same as $coll('my_script_3');
+		// same as $coll->my_script_3 = array('my_script_3');
+		// same as $coll->my_script_3 = array('name' => 'my_script_3');
+			// this above is overrinding the name , 
+				// you can actually do $coll->add = array('name'=>'my_script_3');
+		// same as $coll['my_script_3'] = true;
+		// same as $coll->{'my_script_3'} = true;
 		// :)
 	
 	
 	// If one is from another folder
 	
-	$coll->response_decoder = array('prefix'=>'application/vendor/extra/scripts/');
+	$coll->my_script_4 = array('prefix'=>'application/vendor/extra/scripts/');
 	
 	
 	// since it implements ArrayAcccess, you can also use this method
 	
-	$coll['notices'] = array('prefix'=>'application/vendor/extra/scripts/');
+	$coll['my_script_5'] = array('prefix'=>'application/vendor/extra/scripts/');
 
 
 	// You can set options individually or bulk.
@@ -123,7 +124,7 @@ protected function _add_main_scripts_to( $coll ) // scripts collector, see above
 	// it is built form prefix + name + extension, you can load more than one script at
 	// a time from a specific directory
 	
-	$coll['main|widgets|animations'] = array('prefix'=>'application/vendor/ads/scripts/');
+	$coll['script1|script2|script3'] = array('prefix'=>'application/vendor/ads/scripts/');
 	
 	// this above, will explode the name by "|" and add each one with the parameters passed;
 	// this feature is available in all forms where the language permits it ( all except symbol calls);
