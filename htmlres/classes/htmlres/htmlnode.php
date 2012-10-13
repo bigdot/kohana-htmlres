@@ -35,9 +35,8 @@ class HTMLRes_HTMLNode {
 	/* * 
 	 * 
 	 * Node Class.
-	 * TBD
 	 * 
-	 * */
+	 */
 	
 	
 	protected
@@ -245,5 +244,3 @@ class HTMLRes_HTMLNode {
 	}
 	
 }
-
-?>

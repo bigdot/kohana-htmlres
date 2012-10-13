@@ -36,40 +36,7 @@ class HTMLRes_HTMLNodeReg implements Countable {
 	 * 
 	 * The nodes registry.
 	 * 
-	 * Altough it was originally cencieved as a tree structure, the 21st time i've rewritten it from
-	 * scratch, i came to the conclusion the a tree structure was too much for this job, and so, 
-	 * the 22nd time was rewritten as a list structure.
-	 * There are 2 containers, one holds an associative array of nodes indexed by their names, and one
-	 * holds the order in which the nodes should be rendered. It solves conflicts on registration so that
-	 * a node in the registry with a higher priority ( false means lack of priority, and it's considered
-	 * higher than the node's to be added if the latter is missing the priority also) or that is depended
-	 * on by a node with a higher priority, wins. Dependency solving is similar, and dependencies that 
-	 * are missing are created from the names given by the inserter node ( so be wise about this; if you
-	 * have deps that have a specific src other than the one created from prefix + name + extension,
-	 * you'll have to add those first).
-	 * 
-	 * As of the time of this writing the module is highly untested (but it seems to work for me).
-	 * 
-	 * The registries are not ment to be used dirrectly, they are used internally by the collectors.
-	 * 
-	 * Adding nodes to the registry is done by the import function
-	 * This takes as a parameter an associative or mixed key or normal array that holds the info to be
-	 * passed to the node factory method. String named keys take precedence over int keys , and int keys
-	 * are parsed in the order that the parameters are expected to be given to the factory of the node,
-	 * and that is : name, src, attributes, priority, conflicts, dependencies, prefix, extension.
-	 * 
-	 * To get the list what should be displayed, the first thing to do is to get the nodes in order,
-	 * and that is done by ordered_list() function. Nodes are rendered using a render_node_callback,
-	 * that must be provided by the collector, the default just prints a html comment of the name and src
-	 * of the nodes. There are 2 conveniance functions in HTMLRes for styles and scripts. If ypu find another
-	 * usage for this module, i'll be happy to hear form you.
-	 * 
-	 * The rendering is done in the render() member method, which calls a render_registry_callback, which
-	 * in turn renders each node from the ordered list with the render_node_callback.
-	 * 
-	 * Only a few members of the class are properly documented for now.
-	 * 
-	 * */
+	 */
 	
 	
 	
@@ -830,4 +797,4 @@ class HTMLRes_HTMLNodeReg implements Countable {
 	public function count() { return count($this->_nodes); }
 	
 }
-?>
+
