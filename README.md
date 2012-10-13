@@ -60,7 +60,7 @@ class Controller_Main extends Controller_Template {
 
 this will set a new collector that will print script links when echoed using the conveniance
 `` HTMLRes::script_node_link($node) `` static function, that can be used as a render function
-for nodes (unses `` HTML::script() ``).
+for nodes (uses `` HTML::script() ``).
 
 
 Afterwads you can start adding scripts to your collector, and there are a few ways
@@ -143,28 +143,7 @@ These will be called "supermagic" methods or functions from now on these docs.
 ##### HTMLNodeReg (HTMLNodeRegistry)
 
 The nodes registry.
-
-Altough it was originally cencieved as a tree structure, the 21st time i've rewritten it from
-scratch, i came to the conclusion the a tree structure was too much for this job, and so,
-the 22nd time was rewritten as a list structure.
-There are 2 containers, one holds an associative array of nodes indexed by their names, and one
-holds the order in which the nodes should be rendered. It solves conflicts on registration so that
-a node in the registry with a higher priority ( false means lack of priority, and it's considered
-higher than the node's to be added if the latter is missing the priority also) or that is depended
-on by a node with a higher priority, wins. Dependency solving is similar, and dependencies that
-are missing are created from the names given by the inserter node ( so be wise about this; if you
-have deps that have a specific src other than the one created from prefix + name + extension,
-you'll have to add those first).
-
-As of the time of this writing the module is highly untested (but it seems to work for me).
-
-The registries are not ment to be used dirrectly, they are used internally by the collectors.
-
-Adding nodes to the registry is done by the import function
-This takes as a parameter an associative or mixed key or normal array that holds the info to be
-passed to the node factory method. String named keys take precedence over int keys , and int keys
-are parsed in the order that the parameters are expected to be given to the factory of the node,
-and that is : name, src, attributes, priority, conflicts, dependencies, prefix, extension.
+It's meant to be used internally.
 
 To get the list what should be displayed, the first thing to do is to get the nodes in order,
 and that is done by `` ordered_list() `` function. Nodes are rendered using a `` render_node_callback ``,
@@ -177,27 +156,10 @@ in turn renders each node from the ordered list with the `` render_node_callback
 
 -------------------
 
-As of the time of this writing, this doc is highly unfinished.
-The text was extracted from the comments in the __class__ files.
-
-
-
-### Who uses it
-
-me
-
-
-
-### Who needs it
-
-me
-
-
 
 ### Why ?
 
-didn't found one
-
+Didn't found one + for fun
 
 
 ### Licence
@@ -205,10 +167,7 @@ didn't found one
 LGPL 3
 
 
-
 ### End notes
 
-If you use it, i'll be happy to hear from you.
-If you think it's awful, don't use it.
-If you think it's awful, but you need it, fork it (don't knife it :)) ), maki it better, and let me know.
+Use it, fork it, be happy :) !
 
